@@ -51,7 +51,4 @@
 _____
 
 
-O model GestaoFrota_Doctrine, tem uma tentativa de utilização do Doctrine 2, mas não consegui seguir,
-pois tive alguns problemas ao configurar ele, realizei pesquisas, mas mesmo assim não consegui finalizar
-a configuração dele para fluir no projeto, se for possível, gostaria de receber um feedback referente as configurações
-do Doctrine para entender onde poderia ter faltado alguma configuração para fazer ele funcionar 100%
+O modelo GestaoFrota_Doctrine tenta utilizar o Doctrine 2, mas não consegui prosseguir devido a alguns problemas na configuração. Realizei várias pesquisas, mas ainda assim não consegui finalizar a configuração para integrá-lo corretamente ao projeto. Se possível, gostaria de receber um feedback sobre as configurações do Doctrine para entender onde pode ter faltado algum ajuste para que ele funcione 100%.
