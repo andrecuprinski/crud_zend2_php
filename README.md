@@ -47,3 +47,11 @@
  - /public
    - /css (Contém os arquivos de estilo)
    - /js (Contém os arquivos de javascript)
+
+_____
+
+
+O model GestaoFrota_Doctrine, tem uma tentativa de utilização do Doctrine 2, mas não consegui seguir,
+pois tive alguns problemas ao configurar ele, realizei pesquisas, mas mesmo assim não consegui finalizar
+a configuração dele para fluir no projeto, se for possível, gostaria de receber um feedback referente as configurações
+do Doctrine para entender onde poderia ter faltado alguma configuração para fazer ele funcionar 100%
