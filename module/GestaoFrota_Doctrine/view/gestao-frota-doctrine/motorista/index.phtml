@@ -1,0 +1,127 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath('css/pages/index.css'));
+    $this->headLink()->appendStylesheet($this->basePath('css/utilidades/modal.css'));
+    $this->headLink()->appendStylesheet($this->basePath('css/utilidades/alerts.css'));
+?>
+<?php
+// Exemplo de dados (isso pode vir de um banco de dados ou de outra fonte de dados)
+$dadosMotoristas = [
+    ['id' => 1, 'nome' => 'João Silva', 'cnh' => '123456789', 'veiculo' => 'Caminhão A'],
+    ['id' => 2, 'nome' => 'Maria Souza', 'cnh' => '987654321', 'veiculo' => 'Caminhão B'],
+    ['id' => 3, 'nome' => 'Carlos Oliveira', 'cnh' => '456789123', 'veiculo' => 'Caminhão C'],
+    // Adicione mais dados conforme necessário
+];
+?>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+    </head>
+    <body>
+    <div>
+        <?php include 'modal-cadastro-motorista.phtml'; ?>
+    </div>
+        <section class="menu">
+            <div class="container">
+                <div class="opcoes">
+                    <!-- <img class="imagem" src="<?php echo $this->basePath('/img/img_frota.png'); ?>" alt="Logo"> -->
+                    <h1>Gestão da Frota</h1>
+                    <div id="modalMotoristas" class="modal-overlay" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close-modal">&times;</span>
+                            <div id="modalContent"></div>
+                        </div>
+                    </div>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CNH</th>
+                            <th>Veículo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($dadosMotoristas as $motorista): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($motorista['id']); ?></td>
+                                <td><?php echo htmlspecialchars($motorista['nome']); ?></td>
+                                <td><?php echo htmlspecialchars($motorista['cnh']); ?></td>
+                                <td><?php echo htmlspecialchars($motorista['veiculo']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    </table>
+                    <a href="#" id="novoMotorista" class="button-motoristas w-button modal-motorista">Novo Motorista</a>
+                    <a href="<?php echo $this->basePath('home'); ?>" class="button-veiculos w-button">Voltar</a>
+                </div>
+            </div>
+            <div>
+                <div id="success-alert"></div>
+                <div id="error-alert"></div>
+            </div>
+        </section>
+</body>
+</html>
+<?php
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+?>
+
+<script>
+    $(document).ready(function() {
+        $("#novoMotorista").click(function() {
+            $("#modalMotorista").fadeIn();
+        });
+
+        $("#closeModal").click(function() {
+            $("#modalMotorista").fadeOut();
+        });
+
+        $(window).click(function(event) {
+            if (event.target.id === "modalMotorista") {
+                $("#modalMotorista").fadeOut();
+            }
+        });
+
+        $("#formMotorista").submit(function(event) {
+            event.preventDefault();
+
+            let nome = $("#nome").val();
+            let rg = $("#rg").val();
+            let cpf = $("#cpf").val();
+            let telefone = $("#telefone").val();
+            let placaVeiculo = $("#placaVeiculo").val();
+
+            $.ajax({
+                url: "/gestao-frota/motorista/cadastra-motorista",
+                type: "POST",
+                data: {
+                    nome: nome,
+                    rg: rg,
+                    cpf: cpf,
+                    telefone: telefone,
+                    placaVeiculo: placaVeiculo
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $("#success-alert").text(response.mensagem).show();
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        $("#error-alert").text(response.mensagem).show();
+                        setTimeout(function() {
+                            location.reload();
+                        }, 2000);
+                    }
+                },
+                error: function() {
+                    $("##error-alert").text("Erro ao cadastrar motorista.").show();
+                }
+            });
+        });
+    });
+</script>

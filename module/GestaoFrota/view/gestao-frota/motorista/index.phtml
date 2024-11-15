@@ -1,0 +1,88 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath('css/pages/index.css'))
+            ->appendStylesheet($this->basePath('css/utilidades/alerts.css'))
+            ->appendStylesheet($this->basePath('css/utilidades/tabela.css'));
+
+    $this->headScript()->appendFile($this->basePath('/js/gestao-frota/motorista/index.js'));
+
+        include 'module/GestaoFrota/src/GestaoFrota/Helper/format_helpers.php';
+
+?>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+    </head>
+    <body>
+        <section class="menu">
+            <div class="container">
+                <div class="opcoes">
+                    <h1>Gestão dos motoristas</h1>
+                    <table class="styled-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>RG</th>
+                            <th>CPF</th>
+                            <th>Telefone</th>
+                            <th>Veiculo</th>
+                            <th>Placa</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($this->motoristas as $motorista): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($motorista['id_motorista']); ?></td>
+                                <td><?php echo htmlspecialchars($motorista['nome']); ?></td>
+                                <td><?php echo htmlspecialchars(formatRG($motorista['rg'])); ?></td>
+                                <td><?php echo htmlspecialchars(formatCPF($motorista['cpf'])); ?></td>
+                                <td><?php echo htmlspecialchars(formatTelefone($motorista['telefone'])); ?></td>
+                                <td><?php echo htmlspecialchars($motorista['veiculo']); ?></td>
+                                <td><?php echo htmlspecialchars($motorista['placa']); ?></td>
+                                <td>
+                                    <a href="#" id="editaMotorista" class="btn-edit">Editar</a>
+                                    <a href="#" id="deleteMotorista" class="btn-delete">Excluir</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+
+                    <a href="#" id="novoMotorista" class="remov-link button-motoristas w-button modal-motorista">Novo Motorista</a>
+                    <a href="<?php echo $this->basePath('home'); ?>" class="remov-link button-veiculos w-button">Voltar</a>
+                </div>
+            </div>
+            <div>
+                <div id="success-alert"></div>
+                <div id="error-alert"></div>
+            </div>
+            <div>
+                <?php include 'modal-cadastro-motorista.phtml'; ?>
+                <?php include 'modal-edita-motorista.phtml'; ?>
+                <?php include 'modal-exclui-motorista.phtml'; ?>
+            </div>
+            <div id="modalMotoristas" class="modal-overlay" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+            <div id="modalEditaMotorista" class="modal-overlay" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+            <div id="modalExcluiMotorista" class="modal-overlay" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+        </section>
+</body>
+</html>

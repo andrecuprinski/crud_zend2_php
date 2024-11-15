@@ -1,0 +1,39 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath('css/utilidades/modal.css'));
+
+    $this->headScript()->appendFile($this->basePath('/js/gestao-frota/veiculo/modal-cadastro-veiculo.js'));
+?>
+
+<div id="modalVeiculo" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="closeModal" class="close-btn">&times;</span>
+        <h2>Cadastro de novo veículo</h2>
+        <form id="formVeiculo">
+            <div class="form-group">
+                <label for="ano">Ano: *</label>
+                <input type="number" id="ano" name="ano" min="1500" max="3000" required>
+            </div>
+            <div class="form-group">
+                <label for="modelo">Modelo: *</label>
+                <input type="text" name="modelo" id="modelo" required>
+            </div>
+            <div class="form-group">
+                <label for="marca">Marca: *</label>
+                <input type="text" name="marca" id="marca" required>
+            </div>
+            <div class="form-group">
+                <label for="cor">Cor: *</label>
+                <input type="text" id="cor" name="cor" required>
+            </div>
+            <div class="form-group">
+                <label for="placaVeiculo">Placa do Veiculo:</label>
+                <input type="text" id="placaVeiculo" name="placaVeiculo" required>
+            </div>
+            <div class="form-group">
+                <label for="renavam">Renavam:</label>
+                <input type="text" id="renavam" name="renavam" required>
+            </div>
+            <button type="submit" class="submit-btn">Cadastrar</button>
+        </form>
+    </div>
+</div>

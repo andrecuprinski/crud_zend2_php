@@ -1,0 +1,27 @@
+#success-alert {
+    position: fixed; /* Fixa a posição na tela */
+    bottom: 20px; /* Distância do fundo */
+    right: 20px; /* Distância da lateral direita */
+    background-color: #4CAF50; /* Cor de fundo (verde, pode ser alterada) */
+    color: white; /* Cor do texto */
+    padding: 15px 30px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombras para dar profundidade */
+    display: none; /* Inicialmente oculto */
+    z-index: 9999; /* Certifica-se de que o elemento ficará acima dos outros */
+}
+
+#error-alert {
+    position: fixed; /* Fixa a posição na tela */
+    bottom: 20px; /* Distância do fundo */
+    right: 20px; /* Distância da lateral direita */
+    background-color: #ff0f0f; /* Cor de fundo (verde, pode ser alterada) */
+    color: white; /* Cor do texto */
+    padding: 15px 30px; /* Espaçamento interno */
+    border-radius: 10px; /* Bordas arredondadas */
+    font-size: 16px; /* Tamanho da fonte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombras para dar profundidade */
+    display: none; /* Inicialmente oculto */
+    z-index: 9999; /* Certifica-se de que o elemento ficará acima dos outros */
+}

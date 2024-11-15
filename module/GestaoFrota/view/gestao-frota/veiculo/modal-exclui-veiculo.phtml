@@ -1,0 +1,42 @@
+<?php
+    $this->headLink()->appendStylesheet($this->basePath('css/utilidades/modal.css'));
+    $this->headLink()->appendStylesheet($this->basePath('css/pages/modal-exclui-motorista.css'));
+
+    $this->headScript()->appendFile($this->basePath('/js/gestao-frota/veiculo/modal-exclui-veiculo.js'));
+?>
+
+<div id="modalExcluiVeiculo" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="closerModalDelete" class="close-btn">&times;</span>
+        <h2>Excluir motorista</h2>
+        <p class="highlight-message">Antes de realizar a exclução, realize a verificação dos dados a baixo</p>
+        <form id="formExcluiVeiculo">
+            <input type="hidden" id="id" name="id">
+            <div class="form-group">
+                <label for="ano">Ano: *</label>
+                <input type="number" id="ano" name="ano" min="1500" max="3000" disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="modelo">Modelo: *</label>
+                <input type="text" name="modelo" id="modelo"  disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="marca">Marca: *</label>
+                <input type="text" name="marca" id="marca"  disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="cor">Cor: *</label>
+                <input type="text" id="cor" name="cor"  disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="placaVeiculo">Placa do Veiculo:</label>
+                <input type="text" id="placaVeiculo" name="placaVeiculo"  disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="renavam">Renavam:</label>
+                <input type="text" id="renavam" name="renavam"  disabled="disabled">
+            </div>
+            <button type="submit" class="btn-excluir">Excluir</button>
+        </form>
+    </div>
+</div>

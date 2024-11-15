@@ -1,0 +1,89 @@
+<?php
+$this->headLink()->appendStylesheet($this->basePath('css/pages/index.css'));
+$this->headLink()->appendStylesheet($this->basePath('css/utilidades/modal.css'));
+?>
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+<div id="modalMotorista" class="modal" style="display: none;">
+    <div class="modal-content">
+        <h2>Gerenciamento de Motoristas</h2>
+
+    </div>
+</div>
+<?php
+// Exemplo de dados (isso pode vir de um banco de dados ou de outra fonte de dados)
+$dadosMotoristas = [
+    ['id' => 1, 'nome' => 'João Silva', 'cnh' => '123456789', 'veiculo' => 'Caminhão A'],
+    ['id' => 2, 'nome' => 'Maria Souza', 'cnh' => '987654321', 'veiculo' => 'Caminhão B'],
+    ['id' => 3, 'nome' => 'Carlos Oliveira', 'cnh' => '456789123', 'veiculo' => 'Caminhão C'],
+    // Adicione mais dados conforme necessário
+];
+?>
+<section class="menu">
+    <div class="container">
+        <div class="opcoes">
+            <!-- <img class="imagem" src="<?php echo $this->basePath('/img/img_frota.png'); ?>" alt="Logo"> -->
+            <h1>Gestão da Frota</h1>
+            <div id="modalMotoristas" class="modal-overlay" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+            <table border="1" cellpadding="10" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CNH</th>
+                        <th>Veículo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($dadosMotoristas as $motorista): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($motorista['id']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['nome']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['cnh']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['veiculo']); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <a href="#" class="button-motoristas w-button modal-motorista">Novo Motorista</a>
+            <a href="<?php echo $this->url('home'); ?>" class="button-veiculos w-button">Voltar</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $(".modal-motorista").on("click", function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: '<?php echo $this->url('motoristas'); ?>',
+                method: 'GET',
+                success: function (data) {
+                    $("#modalContent").html(data);
+                    $("#modalMotoristas").fadeIn();
+                },
+                error: function () {
+                    alert('Erro ao carregar o conteúdo do modal.');
+                }
+            });
+        });
+
+        $(document).on("click", ".close-modal", function () {
+            $("#modalMotoristas").fadeOut();
+        });
+    });
+</script>

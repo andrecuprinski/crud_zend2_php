@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Se o arquivo ou diretório solicitado existir, apenas serve-o
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Caso contrário, redireciona para o index.php
+RewriteRule . /index.php [L]
+
+#RewriteRule ^(css|img|js)/(.*)$ public/$1/$2 [L]
+
